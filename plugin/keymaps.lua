@@ -6,9 +6,9 @@ set("n", "<c-k>", "<c-w><c-k>")
 set("n", "<c-l>", "<c-w><c-l>")
 set("n", "<c-h>", "<c-w><c-h>")
 
-set("n", "<space>x", ":.lua<CR>", { desc = "Execute the current line" })
-set("v", "<space>x", ":lua<CR>", { desc = "Execute the current line" })
-set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
+set("n", "<leader>x", ":.lua<CR>", { desc = "Execute the current line" })
+set("v", "<leader>x", ":lua<CR>", { desc = "Execute the current line" })
+set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 -- Toggle hlsearch if it's on, otherwise just do "enter"
 set("n", "<CR>", function()
