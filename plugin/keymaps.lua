@@ -6,9 +6,9 @@ set("n", "<c-k>", "<c-w><c-k>")
 set("n", "<c-l>", "<c-w><c-l>")
 set("n", "<c-h>", "<c-w><c-h>")
 
-set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
-set("v", "<leader>x", "<cmd>lua<CR>", { desc = "Execute the current line" })
-set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
+set("n", "<space>x", ":.lua<CR>", { desc = "Execute the current line" })
+set("v", "<space>x", ":lua<CR>", { desc = "Execute the current line" })
+set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 -- Toggle hlsearch if it's on, otherwise just do "enter"
 set("n", "<CR>", function()
@@ -19,7 +19,7 @@ set("n", "<CR>", function()
   else
     return "<CR>"
   end
-end, { expr = true})
+end, { expr = true })
 
 -- Tab navigation
 set("n", "<M-1>", "gT")
@@ -49,5 +49,3 @@ set("n", "<M-k>", function()
     vim.cmd [[m .-2<CR>==]]
   end
 end)
-
-
