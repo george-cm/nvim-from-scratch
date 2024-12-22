@@ -17,22 +17,26 @@ return {
     },
     config = function()
       require("lspconfig").lua_ls.setup {}
+      -- require("lspconfig").jedi_language_server.setup {}
+      require("lspconfig").pylsp.setup {}
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
 
-          -- if client.supports_method('textDocument/implementation') then
-          -- 	-- Create a keymap for vim.lsp.buf.implementation
-          -- end
-          --
+          ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
+          if client.supports_method('textDocument/implementation') then
+            vim.keymap.set("n", "gd", vim.lsp.buf.implementation)
+          end
+
+          -- ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
           -- if client.supports_method('textDocument/completion') then
-          -- 	-- Enable auto-completion
-          -- 	vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+          --   -- Enable auto-completion
+          --   vim.keymap.set("n", "<leader>.", vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true }))
           -- end
 
-          ---@diagnostic disable-next-line: param-type-mismatch
+          ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
           if client.supports_method('textDocument/formatting') then
             -- Format the current buffer on save
             vim.api.nvim_create_autocmd('BufWritePre', {
@@ -42,7 +46,7 @@ return {
               end,
             })
           end
-        end,
+        end
       })
     end,
   }
