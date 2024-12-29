@@ -19,6 +19,7 @@ return {
 
     require('telescope').load_extension('fzf')
 
+    vim.keymap.set("n", "<leader>fk", require('telescope.builtin').keymaps)
     vim.keymap.set("n", "<leader>fb", function()
       require('telescope.builtin').buffers {
         sort_mru = true,
