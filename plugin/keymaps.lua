@@ -22,30 +22,43 @@ set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current
 -- end, { expr = true })
 
 -- Tab navigation
-set("n", "<M-1>", "gT")
-set("n", "<M-2>", "gt")
+set("n", "<M-1>", "gT", { desc = "Go to previous tab" })
+set("n", "<M-2>", "gt", { desc = "Go to next tab" })
 
-set("n", "]d", vim.diagnostic.goto_next)
-set("n", "[d", vim.diagnostic.goto_prev)
+set("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end,
+  { desc = "Next diagnostic" }
+)
+
+set("n", "[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end,
+  { desc = "Previous diagnostic" }
+)
 
 -- These mappings control the size of splits
-set("n", "<M-,>", "<c-w>5<")
-set("n", "<M-.>", "<c-w>5>")
-set("n", "<M-t>", "<c-w>+")
-set("n", "<M-s>", "<c-w>-")
+set("n", "<M-,>", "<c-w>5<", { desc = "Decrease window width" })
+set("n", "<M-.>", "<c-w>5>", { desc = "Increase window width" })
+set("n", "<M-t>", "<c-w>+", { desc = "Decrease window height" })
+set("n", "<M-s>", "<c-w>-", { desc = "Decrease window height" })
 
 set("n", "<M-j>", function()
-  if vim.opt.diff:get() then
-    vim.cmd [[normal! ]c]]
-  else
-    vim.cmd [[m .+1<CR>==]]
-  end
-end)
+    if vim.opt.diff:get() then
+      vim.cmd [[normal! ]c]]
+    else
+      vim.cmd [[m .+1<CR>==]]
+    end
+  end,
+  { desc = "Move line down" }
+)
 
 set("n", "<M-k>", function()
-  if vim.opt.diff:get() then
-    vim.cmd [[normal! [c]]
-  else
-    vim.cmd [[m .-2<CR>==]]
-  end
-end)
+    if vim.opt.diff:get() then
+      vim.cmd [[normal! [c]]
+    else
+      vim.cmd [[m .-2<CR>==]]
+    end
+  end,
+  { desc = "Move line up" }
+)

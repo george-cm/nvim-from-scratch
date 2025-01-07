@@ -27,7 +27,7 @@ return {
 
           ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
           if client.supports_method('textDocument/implementation') then
-            vim.keymap.set("n", "gd", vim.lsp.buf.implementation)
+            vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { desc = "[g]o to [d]efinition" })
           end
 
           -- ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
