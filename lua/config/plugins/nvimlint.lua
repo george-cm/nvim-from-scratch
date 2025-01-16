@@ -14,7 +14,7 @@ return {
         require("lint").try_lint()
         -- You can call `try_lint` with a linter name or a list of names to always
         -- run specific linters, independent of the `linters_by_ft` configuration
-        require("lint").try_lint("cspell")
+        -- require("lint").try_lint("cspell")
       end
     })
   end,
