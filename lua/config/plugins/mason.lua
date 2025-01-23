@@ -32,9 +32,16 @@ return {
           settings = {
             Lua = {
               diagnostics = {
-                globals = { 'vim' }
-              }
-            }
+                globals = { 'vim', 'love' }
+              },
+              workspace = {
+                checkThirdParty = false,
+                telemetry = { enable = false },
+                library = {
+                  "${3d}/love2d/library",
+                },
+              },
+            },
           }
         }
       end,

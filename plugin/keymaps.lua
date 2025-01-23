@@ -25,17 +25,16 @@ set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current
 set("n", "<M-1>", "gT", { desc = "Go to previous tab" })
 set("n", "<M-2>", "gt", { desc = "Go to next tab" })
 
-set("n", "]d", function()
-    vim.diagnostic.jump({ count = 1, float = true })
-  end,
-  { desc = "Next diagnostic" }
-)
-
-set("n", "[d", function()
-    vim.diagnostic.jump({ count = -1, float = true })
-  end,
-  { desc = "Previous diagnostic" }
-)
+-- set("n", "]d", function()
+--     vim.diagnostic.jump({ count = 1, float = true })
+--   end,
+--   { desc = "Next diagnostic" }
+-- )
+-- set("n", "[d", function()
+--     vim.diagnostic.jump({ count = -1, float = true })
+--   end,
+--   { desc = "Previous diagnostic" }
+-- )
 
 -- These mappings control the size of splits
 set("n", "<M-,>", "<c-w>5<", { desc = "Decrease window width" })

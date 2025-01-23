@@ -30,11 +30,15 @@ return {
             vim.keymap.set("n", "gd", vim.lsp.buf.implementation, { desc = "[g]o to [d]efinition" })
           end
 
+          vim.keymap.set("n", "grn", vim.lsp.buf.rename)
+          vim.keymap.set("n", "gra", vim.lsp.buf.code_action)
           -- ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
           -- if client.supports_method('textDocument/completion') then
           --   -- Enable auto-completion
-          --   vim.keymap.set("n", "<leader>.", vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true }))
+          --   vim.keymap.set("n", "<leader>.",
+          --     vim.lsp._completion.enable(true, client.id, args.buf, { autotrigger = true }))
           -- end
+
 
           ---@diagnostic disable-next-line: param-type-mismatch, missing-parameter
           if client.supports_method('textDocument/formatting') then
