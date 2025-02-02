@@ -2,6 +2,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
+      "mfussenegger/nvim-dap-python",
       "leoluz/nvim-dap-go",
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
@@ -14,6 +15,8 @@ return {
 
       require("dapui").setup()
       require("dap-go").setup()
+      require("dap-python").setup(
+        "C:/Users/George.Murga/AppData/Local/nvim-fromscratch-data/mason/packages/debugpy/venv/Scripts/python.exe")
 
       require("nvim-dap-virtual-text").setup {
         -- This just tries to mitigate the chance that I leak tokens here. Probably won't stop it from happening...
@@ -39,6 +42,7 @@ return {
       --     args = { "dap", "-l", "127.0.0.1:${port}" },
       --   },
       -- }
+
 
       vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "toggle [b]reakpoint" })
       vim.keymap.set("n", "<leader>gb", dap.run_to_cursor, { desc = "[g]o to [b]reakpoint (run to cursor)" })

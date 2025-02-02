@@ -32,7 +32,8 @@ if os_string == 'Windows_NT' then
   vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
   vim.opt.shellquote = ''
   vim.opt.shellxquote = ''
-  vim.g.python3_host_prog = os.getenv('USERPROFILE'):gsub('\\', '/') .. '/.venv_nvim/Scripts/python.exe'
+  -- vim.g.python3_host_prog = vim.fn.getenv('USERPROFILE'):gsub('\\', '/') .. '/.venv_nvim/Scripts/python.exe'
+  vim.g.python3_host_prog = vim.fn.getenv('USERPROFILE') .. '\\.venv_nvim\\Scripts\\python.exe'
 else
   --   vim.opt.shell = os.getenv 'SHELL' or '/usr/bin/env bash'
   vim.g.python3_host_prog = '~/.venv_nvim/bin/python'
