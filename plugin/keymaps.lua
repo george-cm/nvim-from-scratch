@@ -11,8 +11,8 @@ set("v", "<leader>x", ":lua<CR>", { desc = "Execute the current line" })
 set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 set("n", "<leader><leader>", "<cmd>nohls<CR>", { desc = "Turn off search highlight" })
-set("n", "<leader>", ":", { desc = "Command mode" })
-set("n", "<leader>w", ":w<CR>", { desc = "[w]rite current buffer" })
+-- set("n", "<leader>", ":", { desc = "Command mode" })
+-- set("n", "<leader>w", ":w<CR>", { desc = "[w]rite current buffer" })
 -- Toggle hlsearch if it's on, otherwise just do "enter"
 -- set("n", "<CR>", function()
 --   ---@diagnostic disable-next-line: undefined-field
@@ -86,7 +86,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>=", vim.lsp.buf.format)
 
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")

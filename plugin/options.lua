@@ -58,4 +58,12 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.colorcolumn = "80"
 
-vim.diagnostic.config({ jump = { foat = true } })
+vim.diagnostic.config({
+    jump = { foat = true },
+    virtual_text = {
+        source = true,
+    },
+    float = {
+        source = true,
+    },
+})
