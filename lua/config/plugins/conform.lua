@@ -7,7 +7,7 @@ return {
   config = function()
     require("conform").setup {
       formatters_by_ft = {
-        lua = { "stylelua" },
+        lua = { "stylua" },
         python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         bash = { "shfmt", "shellharden", "shellcheck" },

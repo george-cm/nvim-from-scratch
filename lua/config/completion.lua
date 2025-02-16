@@ -1,36 +1,45 @@
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
-local lspkind = require "lspkind"
-lspkind.init {}
+local lspkind = require("lspkind")
+lspkind.init({})
 
-local cmp = require "cmp"
+local cmp = require("cmp")
 
-cmp.setup {
+cmp.setup({
   sources = {
+    {
+      name = "lazydev",
+      -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+      group_index = 0,
+    },
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
   },
   mapping = {
-    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-    ["<C-y>"] = cmp.mapping(
-      cmp.mapping.confirm {
-	behavior = cmp.ConfirmBehavior.Insert,
-	select = true,
-      },
-      { "i", "c" }
-    ),
+    -- ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    -- ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    -- ["<C-y>"] = cmp.mapping(
+    --   cmp.mapping.confirm({
+    --     behavior = cmp.ConfirmBehavior.Insert,
+    --     select = true,
+    --   }),
+    --   { "i", "c" }
+    -- ),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete({}),
   },
 
   -- Enable luasnip to handle snippet expansion for nvim-cmp
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
-    end
+    end,
   },
-}
+})
 
 -- Set up vim-dadbod
 cmp.setup.filetype({ "sql" }, {
@@ -40,11 +49,19 @@ cmp.setup.filetype({ "sql" }, {
   },
 })
 
-local ls = require "luasnip"
-ls.config.set_config {
+cmp.setup.cmdline(":", {
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
+})
+
+local ls = require("luasnip")
+ls.config.set_config({
   history = false,
   updateevents = "TextChanged,TextChangedI",
-}
+})
 
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/config/snippets/*.lua", true)) do
   loadfile(ft_path)()
