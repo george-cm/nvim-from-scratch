@@ -26,44 +26,43 @@ opt.clipboard = "unnamedplus"
 opt.formatoptions:remove "o"
 
 -- The Primeagen
--- vim.opt.guicursor = ""
+-- opt.guicursor = ""
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
+opt.nu = true
+opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-vim.opt.smartindent = true
+opt.smartindent = true
 
-vim.opt.wrap = false
+opt.wrap = false
 
--- vim.opt.swapfile = false
--- vim.opt.backup = false
--- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
--- vim.opt.undofile = true
+-- opt.swapfile = false
+-- opt.backup = false
+opt.undodir = vim.loop.os_homedir() .. "/.undodir"
+opt.undofile = true
 
--- vim.opt.hlsearch = false
--- vim.opt.incsearch = true
+-- opt.hlsearch = false
+-- opt.incsearch = true
 
--- vim.opt.termguicolors = true
+-- opt.termguicolors = true
 
-vim.opt.scrolloff = 8
--- vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.scrolloff = 8
+opt.isfname:append("@-@")
 
--- vim.opt.updatetime = 50
+-- opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+opt.colorcolumn = "80"
 
 vim.diagnostic.config({
-    jump = { foat = true },
-    virtual_text = {
-        source = true,
-    },
-    float = {
-        source = true,
-    },
+  jump = { foat = true },
+  virtual_text = {
+    source = true,
+  },
+  float = {
+    source = true,
+  },
 })

@@ -114,6 +114,7 @@ return {
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+          map('<C-h', vim.lsp.buf.signature_help, 'Show signature [h]elp', { 'i' })
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -197,7 +198,51 @@ return {
                 ruff = {
                   enabled = false,
                 },
+                rope_autoimport = {
+                  enabled = true,
+                  -- completions = { enabled = true },
+                  -- code_actions = { enabled = true },
+                },
+                -- rope_completions = {
+                --   enabled = false,
+                --   completions = { enabled = true },
+                --   code_actions = { enabled = true },
+                -- },
+                -- autoimport = {
+                --   enabled = false,
+                -- }
+                pylsp_mypy = {
+                  enabled = true,
+                }
               },
+            },
+          },
+        },
+
+        emmet_language_server = {
+          settings = {
+            filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
+            -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
+            -- **Note:** only the options listed in the table are supported.
+            init_options = {
+              ---@type table<string, string>
+              includeLanguages = {},
+              --- @type string[]
+              excludeLanguages = {},
+              --- @type string[]
+              extensionsPath = {},
+              --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+              preferences = {},
+              --- @type boolean Defaults to `true`
+              showAbbreviationSuggestions = true,
+              --- @type "always" | "never" Defaults to `"always"`
+              showExpandedAbbreviation = "always",
+              --- @type boolean Defaults to `false`
+              showSuggestionsAsSnippets = false,
+              --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+              syntaxProfiles = { html = { atter_quotes = "single", }, },
+              --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+              variables = {},
             },
           },
         },

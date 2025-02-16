@@ -4,6 +4,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    "debugloop/telescope-undo.nvim",
   },
   config = function()
     require('telescope').setup {
@@ -13,12 +14,14 @@ return {
         }
       },
       extensions = {
-        fzf = {}
+        fzf = {},
+        undo = {},
       },
     }
 
     require('telescope').load_extension('fzf')
     require('telescope').load_extension('prosession')
+    require('telescope').load_extension('undo')
 
     vim.keymap.set("n", "<leader>fk", require('telescope.builtin').keymaps, { desc = "[f]ind [k]eymaps" })
     vim.keymap.set("n", "<leader>fb", function()
@@ -47,7 +50,8 @@ return {
       { desc = "[e]dit [p]lugins" }
     )
     vim.keymap.set("n", "<leader>fp", "<cmd>Telescope prosession<CR>", { desc = "[f]ind [p]rosession" })
-
+    vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<CR>", { desc = "Telescope [u]ndo tree" })
+    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "Show function signature [h]elp" })
     require "config.telescope.multigrep".setup()
   end
 }
