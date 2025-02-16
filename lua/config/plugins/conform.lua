@@ -1,5 +1,8 @@
 return {
   'stevearc/conform.nvim',
+  dependencies = {
+    { 'wesleimp/stylua.nvim' },
+  },
   opts = {},
   config = function()
     require("conform").setup {
