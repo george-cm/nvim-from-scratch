@@ -4,3 +4,4 @@ set.shiftwidth = 4
 set.number = true
 set.relativenumber = true
 set.colorcolumn = "120"
+set.smartindent = false

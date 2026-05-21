@@ -10,6 +10,7 @@ return {
         keymaps = {
           ["<C-h>"] = false,
           ["<M-h>"] = { "actions.select", opts = { horizontal = true } },
+          ["<M-x>"] = { "actions.close", opts = { desc = "E[x]it Oil" } },
         },
         view_options = {
           show_hidden = true,

@@ -1,8 +1,8 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local os_string = vim.loop.os_uname().sysname
-local wsl_distro_name = os.getenv "WSL_DISTRO_NAME"
+local wsl_distro_name = os.getenv("WSL_DISTRO_NAME")
 
 -- If running in WSL then fix paste
 -- if wsl_distro_name then
@@ -23,30 +23,45 @@ local wsl_distro_name = os.getenv "WSL_DISTRO_NAME"
 -- end
 
 -- Set default terminal shell
-if os_string == 'Windows_NT' then
-  vim.opt.shell = vim.fn.executable 'pwsh' and 'pwsh' or 'powershell'
+if os_string == "Windows_NT" then
+  vim.opt.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
   -- vim.opt.shell = 'pwsh'
   vim.opt.shellcmdflag =
-  '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-  vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-  vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-  vim.opt.shellquote = ''
-  vim.opt.shellxquote = ''
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
   -- vim.g.python3_host_prog = vim.fn.getenv('USERPROFILE'):gsub('\\', '/') .. '/.venv_nvim/Scripts/python.exe'
-  vim.g.python3_host_prog = vim.fn.getenv('USERPROFILE') .. '\\.venv_nvim\\Scripts\\python.exe'
+  vim.g.python3_host_prog = vim.fn.getenv("USERPROFILE") .. "\\.venv_nvim\\Scripts\\python.exe"
 else
   --   vim.opt.shell = os.getenv 'SHELL' or '/usr/bin/env bash'
-  vim.g.python3_host_prog = '~/.venv_nvim/bin/python'
+  vim.g.python3_host_prog = "~/.venv_nvim/bin/python"
 end
 
 require("config.lazy")
 
 --   Trey it with `yap` in normal mode
---   See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+--   See `:help vim.hl.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
+
+if vim.g.neovide then
+  -- Put anything you want to happen only in Neovide here
+  vim.o.guifont = "MesloLGL Nerd Font Mono:h10"
+  vim.g.neovide_cursor_vfx_mode = ""
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_cursor_short_animation_length = 0
+  vim.g.neovide_cursor_animate_command_line = false
+  vim.g.neovide_position_animation_length = 0
+  vim.g.neovide_scroll_animation_length = 0
+  vim.g.neovide_scroll_animation_far_lines = 0
+  vim.g.neovide_cursor_animate_in_insert_mode = false
+  -- vim.g.neovide_hide_mouse_when_typing = false
+  vim.opt.clipboard = "unnamedplus"
+end

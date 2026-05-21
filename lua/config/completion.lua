@@ -67,7 +67,7 @@ for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/config/snippets/*.lu
   loadfile(ft_path)()
 end
 
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+vim.keymap.set({ "i", "s" }, "<C-l>", function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end

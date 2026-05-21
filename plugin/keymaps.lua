@@ -6,9 +6,13 @@ local set = vim.keymap.set
 -- set("n", "<c-l>", "<c-w><c-l>")
 -- set("n", "<c-h>", "<c-w><c-h>")
 
+set("v", ">", ">gv", { desc = "Indent and reselect" })
+set("v", "<", "<gv", { desc = "Dedent and reselect" })
+
 set("n", "<leader>x", ":.lua<CR>", { desc = "Execute the current line" })
 set("v", "<leader>x", ":lua<CR>", { desc = "Execute the current line" })
 set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
+set("n", "<leader>w", ":w<CR>", { desc = "[W]rite buffer" })
 
 set("n", "<leader><leader>", "<cmd>nohls<CR>", { desc = "Turn off search highlight" })
 -- set("n", "<leader>", ":", { desc = "Command mode" })
@@ -31,7 +35,10 @@ set("n", "]<space>", "o<ESC>", { desc = "Add line below" })
 set("n", "[<space>", "O<ESC>", { desc = "Add line above" })
 
 -- Add the current date
-set("n", "<F7>", 'a<C-R>=strftime("%Y/%m/%d")<CR><Esc>', { desc = "Add current date" })
+set({ "n" }, "<F7>", 'a<C-R>=strftime("%Y/%m/%d")<CR><Esc>', { desc = "Add current date" })
+set({ "i" }, "<F7>", '<C-R>=strftime("%Y/%m/%d")<CR>', { desc = "Add current date" })
+set({ "n" }, "<S-F7>", 'a<C-R>=strftime("%Y-%m-%d")<CR><Esc>', { desc = "Add current date" })
+set({ "i" }, "<S-F7>", '<C-R>=strftime("%Y-%m-%d")<CR>', { desc = "Add current date" })
 
 -- Tab navigation
 set("n", "<M-1>", "gT", { desc = "Go to previous tab" })
@@ -55,24 +62,20 @@ set("n", "<M-t>", "<c-w>+", { desc = "Decrease window height" })
 set("n", "<M-s>", "<c-w>-", { desc = "Decrease window height" })
 
 set("n", "<M-j>", function()
-    if vim.opt.diff:get() then
-      vim.cmd [[normal! ]c]]
-    else
-      vim.cmd [[m .+1<CR>==]]
-    end
-  end,
-  { desc = "Move line down" }
-)
+  if vim.opt.diff:get() then
+    vim.cmd([[normal! ]c]])
+  else
+    vim.cmd([[m .+1<CR>==]])
+  end
+end, { desc = "Move line down" })
 
 set("n", "<M-k>", function()
-    if vim.opt.diff:get() then
-      vim.cmd [[normal! [c]]
-    else
-      vim.cmd [[m .-2<CR>==]]
-    end
-  end,
-  { desc = "Move line up" }
-)
+  if vim.opt.diff:get() then
+    vim.cmd([[normal! [c]])
+  else
+    vim.cmd([[m .-2<CR>==]])
+  end
+end, { desc = "Move line up" })
 
 -- The Primeagen
 set("n", "J", "mzJ`z")
